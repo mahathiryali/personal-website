@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { useGameStore } from '../store/gameStore'
 
 // Placeholder scenes — you'll build these out in later phases
@@ -7,7 +8,7 @@ const OfficeScene = () => <div className="text-white text-2xl">💼 Office</div>
 export default function SceneManager() {
   const currentRoom = useGameStore((s) => s.currentRoom)
 
-  const scenes: Record<string, JSX.Element> = {
+  const scenes: Record<string, React.ReactElement> = {
     plaza: <PlazaScene />,
     office: <OfficeScene />,
     // add more as you build them
