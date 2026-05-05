@@ -1,9 +1,18 @@
 import * as React from 'react'
 import { useGameStore } from '../store/gameStore'
+import PlazaScene from './PlazaScene'
 
-// Placeholder scenes — you'll build these out in later phases
-const PlazaScene = () => <div className="text-white text-2xl">🏙️ Plaza</div>
-const OfficeScene = () => <div className="text-white text-2xl">💼 Office</div>
+const OfficeScene = () => (
+  <div className="w-screen h-screen bg-gray-900 flex items-center justify-center">
+    <div className="text-white text-2xl">💼 Office — coming soon</div>
+    <button
+      className="absolute top-4 left-4 text-white underline"
+      onClick={() => useGameStore.getState().setRoom('plaza')}
+    >
+      ← Back to Plaza
+    </button>
+  </div>
+)
 
 export default function SceneManager() {
   const currentRoom = useGameStore((s) => s.currentRoom)
@@ -11,12 +20,11 @@ export default function SceneManager() {
   const scenes: Record<string, React.ReactElement> = {
     plaza: <PlazaScene />,
     office: <OfficeScene />,
-    // add more as you build them
   }
 
   return (
-    <div className="w-screen h-screen bg-gray-900 flex items-center justify-center">
-      {scenes[currentRoom] ?? <div className="text-white">Room not found</div>}
+    <div className="w-screen h-screen bg-gray-900">
+      {scenes[currentRoom] ?? <PlazaScene />}
     </div>
   )
 }
